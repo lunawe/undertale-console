@@ -1,4 +1,5 @@
 import os
+import keyboard
 
 def clear():
     if(os.name == "nt"):
@@ -8,20 +9,20 @@ def clear():
 
 clear()
 
-rows,cols_ = os.popen('stty size', 'r').read().split()
+rows,cols = os.popen('stty size', 'r').read().split()
 logo_height = 3
 space = " "
 try:
-    rows = int(int(rows) / 2)
+    x = int(int(rows) / 2)
 except:
-    rows = int(rows) / 2
+    x = int(rows) / 2
 
 splash1 = "█ █ █▄ █ █▀▄ █▀▀ █▀█ ▀█▀ ▄▀█ █   █▀▀"
 splash2 = "█▄█ █ ▀█ █▄▀ ██▄ █▀▄  █  █▀█ █▄▄ ██▄"
 splash3 = "          Terminal Edition"
 
 logo_len = len(splash1)
-cols = int((int(cols_) - logo_len) / 2)
+y = int((int(cols) - logo_len) / 2)
 
 splash = [
     splash1,
@@ -29,10 +30,15 @@ splash = [
     splash3
 ]
 
-print("\n"*rows)
+print("\n"*x)
 for i in splash:
-    print(" "*cols,i)
-print("\n"*(rows-1))
-logo_len = len("Press Enter...")
-cols = int((int(cols_) - logo_len) / 2)
-input(f"{space*cols}Press Enter...")
+    print(" "*y,i)
+print("\n"*(x-1))
+logo_len = len("Press Z...")
+y = int((int(cols) - logo_len) / 2)
+print(f"{space*y}Press Z...")
+#Waiting for them 2 press Z
+while True:
+    if keyboard.read_key() == "z":
+        break
+print("Game Started!")
