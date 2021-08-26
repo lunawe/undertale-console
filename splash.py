@@ -1,5 +1,6 @@
 import os
 import keyboard
+import test
 
 def clear():
     if(os.name == "nt"):
@@ -41,4 +42,4 @@ print(f"{space*y}Press Z...")
 while True:
     if keyboard.read_key() == "z":
         break
-print("Game Started!")
+test.startTest()
