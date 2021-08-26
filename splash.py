@@ -8,20 +8,20 @@ def clear():
 
 clear()
 
-rows,cols = os.popen('stty size', 'r').read().split()
+rows,cols_ = os.popen('stty size', 'r').read().split()
 logo_height = 3
 space = " "
 try:
-    x = int(int(rows) / 2)
+    rows = int(int(rows) / 2)
 except:
-    x = int(rows) / 2
+    rows = int(rows) / 2
 
 splash1 = "█ █ █▄ █ █▀▄ █▀▀ █▀█ ▀█▀ ▄▀█ █   █▀▀"
 splash2 = "█▄█ █ ▀█ █▄▀ ██▄ █▀▄  █  █▀█ █▄▄ ██▄"
 splash3 = "          Terminal Edition"
 
 logo_len = len(splash1)
-y = int((int(cols) - logo_len) / 2)
+cols = int((int(cols_) - logo_len) / 2)
 
 splash = [
     splash1,
@@ -29,10 +29,10 @@ splash = [
     splash3
 ]
 
-print("\n"*x)
+print("\n"*rows)
 for i in splash:
-    print(" "*y,i)
-print("\n"*(x-1))
+    print(" "*cols,i)
+print("\n"*(rows-1))
 logo_len = len("Press Enter...")
-y = int((int(cols) - logo_len) / 2)
-input(f"{space*y}Press Enter...")
+cols = int((int(cols_) - logo_len) / 2)
+input(f"{space*cols}Press Enter...")
