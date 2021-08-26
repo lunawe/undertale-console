@@ -10,7 +10,7 @@ clear()
 
 rows,cols = os.popen('stty size', 'r').read().split()
 logo_height = 3
-sp = " "
+space = " "
 try:
     x = int(int(rows) / 2)
 except:
@@ -35,4 +35,4 @@ for i in splash:
 print("\n"*(x-1))
 logo_len = len("Press Enter...")
 y = int((int(cols) - logo_len) / 2)
-input(f"{sp*y}Press Enter...")
+input(f"{space*y}Press Enter...")
