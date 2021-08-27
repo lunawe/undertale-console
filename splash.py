@@ -40,6 +40,7 @@ y = int((int(cols) - logo_len) / 2)
 print(f"{space*y}Press Z...")
 #Waiting for them 2 press Z
 while True:
-    if keyboard.read_key() == "z":
+    userinput = keyboard.read_key()
+    if userinput in ["z", "enter"]:
         break
 test.startTest()

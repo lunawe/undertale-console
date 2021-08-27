@@ -28,7 +28,8 @@ icons = [
 keys = {
     "right":1,
     "left":-1,
-    "enter":0
+    "enter":0,
+    "z":0
 }
 
 def fightMenu(options, icons, selectionStart = 0):
