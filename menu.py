@@ -9,40 +9,71 @@ def clear():
         os.system("clear")
 
 mainOptions = [
-    "", #Added a space so it'd be easier to make the thing
     "Fight",
     "Act",
     "Item",
     "Mercy"
 ]
 
+#made them emoji, if u dont like it tell me on dc
+#some of them got rendered as two characters and i had to fix that, thats why the heart and fight icon aren't emojis, but i think they look fine
 icons = [
-    "<3",
-    "<=",
-    "))",
-    "&?"
-    "><"
+    "⚔",
+    "🔊",
+    "💰",
+    "❎",
+    "❤"
 ]
 
 keys = {
-    "Right":1,
-    "Left":-1,
-    "Enter":0
+    "right":1,
+    "left":-1,
+    "enter":0
 }
 
-def fightMenu(options, icons):
+def fightMenu(options, icons, selectionStart = 0):
+
     #Displaying the options to the player
-    selectedOption = 0
+    selectedOption = selectionStart
+    output = ""
+    #trying to center it HELP MEEEEEE
+    width,height = os.popen('stty size', 'r').read().split()
+    width = int(width)
+    height = int(height)
+    for y in range(height):
+        for x in range(width):
+            output += " "
+        output += "\n"
+    for i in range(int((width - len("# Fight  # Act  # Item  # Mercy")) / 2)):
+        output += " "
+
+    for i in range(len(options)):
+        #cycle through the options
+        try:
+            #using try cuz len(optins) can go over, but len(options) - 1 messes things up
+            if(i == selectedOption):
+                #if its selected, we print the heart: icons[-1]
+                #yes, weird approach but it was gliitttchy before 4 some reason
+                output += str(icons[-1]) + " " + str(options[i]) + "  "
+            else:
+                output += str(icons[i]) + " " + str(options[i]) + "  "
+        except:
+            pass
+    print(output)
     while True:
-        for i in range(len(options) - 1):
-            if(i == selectedOption):print(f"{icons[0]}{options[i]} ", end = "")
-            else:print(f"{icons[i]}{options[i]} ", end = "")
         #Making the player decide
-        select = keyboard.read_key()
-        keys.get(select, "")
-        if(select == ""):
-            if(options[selectedOption] in options):print("Indev!");sleep(1);clear();break
-        else:clear()
-        clear()
+        userinput = keyboard.read_key()
+        if not keyboard.is_pressed(userinput):
+            action = keys.get(userinput, "")
+            if action in keys.values():
+                if action == 0:
+                    print("INTERACTED!!!")
+                    return
+                selectedOption += action
+                if selectedOption < 0:
+                    selectedOption = 3
+                elif selectedOption > 3:
+                    selectedOption = 0
+                fightMenu(options, icons, selectedOption)
 
 fightMenu(mainOptions,icons)

@@ -2,4 +2,10 @@ import keyboard
 import os
 
 def startTest():
-    print("eee!")
+    #Game loop:
+    while True:
+        rows,cols = os.popen('stty size', 'r').read().split()
+        testchar = "e"
+        world = ""
+        world = testchar*rows
+        print(world)
