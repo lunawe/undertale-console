@@ -37,7 +37,7 @@ def fightMenu(options, icons, selectionStart = 0):
     selectedOption = selectionStart
     output = ""
     #trying to center it HELP MEEEEEE
-    width,height = os.popen('stty size', 'r').read().split()
+    height,width = os.popen('stty size', 'r').read().split()
     width = int(width)
     height = int(height)
     for y in range(height):
